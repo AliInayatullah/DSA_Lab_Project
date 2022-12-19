@@ -12,10 +12,6 @@ class bst{
     };
 
     node *root;
-    void displayInOrder(node *);
-    void displayPreOrder(node *);
-    void displayPostOrder(node *);
-
     public:
 
     bst(){
@@ -23,20 +19,10 @@ class bst{
     }
 
     void InsertNode(string);
+    void InsertNodeEnc(string);
     char getEncrypted(char);
-    void remove(int);
-    void ShowInOrder()
-    {
-        displayInOrder(root);
-    }
-    void ShowPreOrder()
-    {
-        displayPreOrder(root);
-    }
-    void ShowPostOrder()
-    {
-        displayPostOrder(root);
-    }
+    char getDecrypted(char);
+    
 };
 
 void bst::InsertNode(string data)
@@ -90,35 +76,55 @@ void bst::InsertNode(string data)
     }
 }
 
-void bst::displayInOrder(node *nodeptr)
+void bst::InsertNodeEnc(string data)
 {
-    if (nodeptr)
-    {
-        displayInOrder(nodeptr->left);
-        
-        cout << nodeptr->normal<<", "<<nodeptr->encrpyt << endl;
-        
-        displayInOrder(nodeptr->right);
-    }
-}
+    node *newnode = new node;
+    node *traverse;
 
-void bst::displayPreOrder(node *nodeptr)
-{
-    if (nodeptr)
+    if (this->root == NULL)
     {
-         cout << nodeptr->normal<<", "<<nodeptr->encrpyt << endl;
-        displayPreOrder(nodeptr->left);
-        displayPreOrder(nodeptr->right);
+        newnode->normal = data[0];
+        newnode->encrpyt = data[2];
+        newnode->left = newnode->right = NULL;
+        root = newnode;
     }
-}
-
-void bst::displayPostOrder(node *nodeptr)
-{
-    if (nodeptr)
+    else
     {
-        displayPreOrder(nodeptr->left);
-        displayPreOrder(nodeptr->right);
-        cout << nodeptr->normal<<", "<<nodeptr->encrpyt << endl;    }
+        traverse = root;
+        newnode->normal = data[0];
+        newnode->encrpyt = data[2];
+        newnode->left = newnode->right = NULL;
+        while (traverse != NULL)
+        {
+            if (data[2] < traverse->encrpyt)
+            {
+                if (traverse->left != NULL)
+                {
+                    traverse = traverse->left;
+                }
+                else
+                {
+                    traverse->left = newnode;
+                    break;
+                }
+            }
+            else if (data[2] > traverse->encrpyt)
+            {
+                if (traverse->right != NULL)
+                {
+                    traverse = traverse->right;
+                }
+                else
+                {
+                    traverse->right = newnode;
+                    break;
+                }
+            }
+            else{
+                cout<<"\nduplicate values of encrypted data cant be stored\n";
+            }
+        }
+    }
 }
 
 char bst::getEncrypted(char nor)
@@ -147,6 +153,36 @@ char bst::getEncrypted(char nor)
             }
         }
         return false;
+    }
+}
+
+char bst::getDecrypted(char enc)
+{
+    node *traverse = root;
+    
+    if (traverse == NULL)
+    {
+        cout << "\nthe tree is empty\n";
+        return false;
+    }
+    else
+    {
+        while (traverse != NULL)
+        {
+            if (traverse->encrpyt == enc)
+            {
+                return traverse->normal;
+            }
+            else if (enc < traverse->encrpyt)
+            {
+                traverse = traverse->left;
+            }
+            else
+            {
+                traverse = traverse->right;
+            }
+        }
+        return enc;
     }
 }
 
