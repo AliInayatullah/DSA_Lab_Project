@@ -27,7 +27,7 @@ s,j
 t,E
 2,a
 o,P
-8,O
+8,d
 p,-
 5,A
 w,f
@@ -41,7 +41,7 @@ D,]
 E,i
 F,!
 G,1
-H,M
+H,T
 I,Q
 J,2
 K,z
