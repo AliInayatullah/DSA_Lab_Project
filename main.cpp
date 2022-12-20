@@ -16,7 +16,7 @@ void encrypt(char arr[], bst mapping_tree)
     int i = 0;
     // fstream encrypted_file("encypted.txt", ios::out);
     queue message_queue;
-    std::cout << arr;
+    // std::cout << arr;
     string encryptedWord = "";
     std::cout << endl;
     while (arr[i] != '\0')
@@ -38,11 +38,11 @@ void encrypt(char arr[], bst mapping_tree)
     message_queue.enqueue(encryptedWord);
 
     // printing the Encrypted message
+    cout << "Decrypted Message: ";
     message_queue.print();
 }
 
 /**
- * @brief Decrypts the string using mapping tree
  *
  * @param arr character array (string)
  * @param mapping_tree BST for mappings
@@ -51,7 +51,7 @@ void decrypt(char arr[], bst mapping_tree)
 {
     int i = 0;
     queue message_queue;
-    std::cout << arr;
+    // std::cout << arr;
     string decryptedWord = "";
     std::cout << endl;
     while (arr[i] != '\0')
@@ -73,6 +73,7 @@ void decrypt(char arr[], bst mapping_tree)
     message_queue.enqueue(decryptedWord);
 
     // printing the Decrypted message
+    cout << "Decrypted Message: ";
     message_queue.print();
 }
 
@@ -116,7 +117,7 @@ int main()
     {
     case 1:
     {
-        std::cout << "\nEnter string to encrypt: ";
+        std::cout << "\nEnter Message to encrypt: ";
         cin.ignore();
         cin.get(str, 100);
         encrypt(str, encryption_mapping_tree);
@@ -124,7 +125,7 @@ int main()
     }
     case 2:
     {
-        std::cout << "\nEnter string to decrypt: ";
+        std::cout << "\nEnter Message to decrypt: ";
         cin.ignore();
         cin.get(str, 100);
         decrypt(str, decryption_mapping_tree);
