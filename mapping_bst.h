@@ -1,10 +1,19 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class bst{
-    private:
-
-    struct node{
+/**
+ * @brief Class for Binary Search Tree
+ *
+ */
+class bst
+{
+private:
+    /**
+     * @brief Struct For a BST Node
+     *
+     */
+    struct node
+    {
         node *left;
         node *right;
         char normal;
@@ -12,17 +21,42 @@ class bst{
     };
 
     node *root;
-    public:
 
-    bst(){
+public:
+    /**
+     * @brief Construct a new bst object
+     *
+     */
+    bst()
+    {
         root = NULL;
     }
 
+    /**
+     * @brief Insert Node for encryption mapping tree
+     *
+     */
     void InsertNode(string);
+
+    /**
+     * @brief insert Node for Decryption mapping tree
+     *
+     */
     void InsertNodeEnc(string);
+
+    /**
+     * @brief Get the Encrypted object
+     *
+     * @return char Normal char
+     */
     char getEncrypted(char);
+
+    /**
+     * @brief Get the Decrypted object
+     *
+     * @return char Encrypted char
+     */
     char getDecrypted(char);
-    
 };
 
 void bst::InsertNode(string data)
@@ -69,8 +103,9 @@ void bst::InsertNode(string data)
                     break;
                 }
             }
-            else{
-                cout<<"\nduplicate values cant be stored\n";
+            else
+            {
+                cout << "\nduplicate values cant be stored\n";
             }
         }
     }
@@ -120,8 +155,9 @@ void bst::InsertNodeEnc(string data)
                     break;
                 }
             }
-            else{
-                cout<<"\nduplicate values of encrypted data cant be stored\n";
+            else
+            {
+                cout << "\nduplicate values of encrypted data cant be stored\n";
             }
         }
     }
@@ -159,7 +195,7 @@ char bst::getEncrypted(char nor)
 char bst::getDecrypted(char enc)
 {
     node *traverse = root;
-    
+
     if (traverse == NULL)
     {
         cout << "\nthe tree is empty\n";
@@ -185,4 +221,3 @@ char bst::getDecrypted(char enc)
         return enc;
     }
 }
-
