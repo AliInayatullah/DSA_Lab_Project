@@ -2,14 +2,27 @@
 #include "string"
 using namespace std;
 
+/**
+ * @brief class for Queue
+ *
+ */
 class queue
 {
 private:
+    /**
+     * @brief Struct for a Queue Node
+     *
+     */
     struct node
     {
         node *next;
         string data;
-        node(){
+        /**
+         * @brief Construct a new node object
+         *
+         */
+        node()
+        {
             next = NULL;
         }
     };
@@ -17,50 +30,82 @@ private:
     node *head;
 
 public:
+    /**
+     * @brief Construct a new queue object
+     *
+     */
     queue()
     {
         head = NULL;
     }
 
+    /**
+     * @brief Insert data in queue
+     *
+     * @param key string
+     */
     void enqueue(string key)
     {
-      node *newnode = new node;
-      newnode->data = key;
-      if(head == NULL){
-        head = newnode;
-      }
-      else{
-        node *traverse = head;
-        while(traverse->next != NULL){
-            traverse = traverse->next;
+        node *newnode = new node;
+        newnode->data = key;
+        if (head == NULL)
+        {
+            head = newnode;
         }
-        traverse->next = newnode;
-      }
+        else
+        {
+            node *traverse = head;
+            while (traverse->next != NULL)
+            {
+                traverse = traverse->next;
+            }
+            traverse->next = newnode;
+        }
     }
 
-    string dequeue(){
+    /**
+     * @brief remove data from queue
+     *
+     * @return string
+     */
+    string dequeue()
+    {
         // node *traverse = head;
         string returndata = head->data;
         head = head->next;
         return returndata;
-
     }
-    bool isEmpty(){
-        if(head == NULL){
+
+    /**
+     * @brief check if queue is empty
+     *
+     * @return true if empty
+     * @return false if not empty
+     */
+    bool isEmpty()
+    {
+        if (head == NULL)
+        {
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }
 
-    void print(){
+    /**
+     * @brief print the data in queue
+     *
+     */
+    void print()
+    {
         node *traverse = head;
-        while(traverse->next != NULL){
-            cout<<traverse->data<<" ";
+        while (traverse->next != NULL)
+        {
+            cout << traverse->data << " ";
             traverse = traverse->next;
         }
-        cout<<traverse->data;
+        cout << traverse->data;
     }
-
 };
