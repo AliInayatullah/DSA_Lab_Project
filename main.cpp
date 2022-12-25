@@ -6,6 +6,30 @@ using namespace std;
 #include <fstream>
 
 /**
+ * @brief outputs the encrypted text to a file
+ * 
+*/
+void outputEncryptedToFile(queue message){
+    fstream encrypted_file("encrypted.txt", ios::out);
+    while(!message.isEmpty()){
+        string temp = message.dequeue();
+        encrypted_file<<temp<<" ";
+    }
+}
+
+/**
+ * @brief outputs the decrypted text to a file
+ * 
+*/
+void outputDecryptedToFile(queue message){
+    fstream encrypted_file("decrypted.txt", ios::out);
+    while(!message.isEmpty()){
+        string temp = message.dequeue();
+        encrypted_file<<temp<<" ";
+    }
+}
+
+/**
  * @brief Encrypts the string using mapping tree
  *
  * @param arr character array (string)
@@ -14,7 +38,6 @@ using namespace std;
 void encrypt(char arr[], bst mapping_tree)
 {
     int i = 0;
-    // fstream encrypted_file("encypted.txt", ios::out);
     queue message_queue;
     // std::cout << arr;
     string encryptedWord = "";
@@ -38,11 +61,13 @@ void encrypt(char arr[], bst mapping_tree)
     message_queue.enqueue(encryptedWord);
 
     // printing the Encrypted message
-    cout << "Decrypted Message: ";
+    cout << "Encrypted Message: ";
     message_queue.print();
+    outputEncryptedToFile(message_queue);
 }
 
 /**
+ * @brief Decrypts the string using mapping BST
  *
  * @param arr character array (string)
  * @param mapping_tree BST for mappings
@@ -75,6 +100,7 @@ void decrypt(char arr[], bst mapping_tree)
     // printing the Decrypted message
     cout << "Decrypted Message: ";
     message_queue.print();
+    outputDecryptedToFile(message_queue);
 }
 
 /**
