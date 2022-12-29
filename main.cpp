@@ -11,6 +11,7 @@ using namespace std;
 */
 void outputEncryptedToFile(queue message){
     fstream encrypted_file("encrypted.txt", ios::out);
+    encrypted_file<<"ENCRYPTED MESSAGE:\n";
     while(!message.isEmpty()){
         string temp = message.dequeue();
         encrypted_file<<temp<<" ";
@@ -22,10 +23,11 @@ void outputEncryptedToFile(queue message){
  * 
 */
 void outputDecryptedToFile(queue message){
-    fstream encrypted_file("decrypted.txt", ios::out);
+    fstream decrypted_file("decrypted.txt", ios::out);
+    decrypted_file<<"DECRYPTED TEXT:\n";
     while(!message.isEmpty()){
         string temp = message.dequeue();
-        encrypted_file<<temp<<" ";
+        decrypted_file<<temp<<" ";
     }
 }
 
