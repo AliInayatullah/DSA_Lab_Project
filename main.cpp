@@ -135,7 +135,7 @@ int main()
             break;
     }
 
-    char str[100];
+    char str[1000];
     menu();
     int input;
     cout << "Select an option: ";
@@ -147,7 +147,7 @@ int main()
     {
         std::cout << "\nEnter Message to encrypt: ";
         cin.ignore();
-        cin.get(str, 100);
+        cin.get(str, 1000);
         encrypt(str, encryption_mapping_tree);
         break;
     }
