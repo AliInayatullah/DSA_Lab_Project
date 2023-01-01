@@ -155,7 +155,7 @@ int main()
     {
         std::cout << "\nEnter Message to decrypt: ";
         cin.ignore();
-        cin.get(str, 100);
+        cin.get(str, 1000);
         decrypt(str, decryption_mapping_tree);
         break;
 
